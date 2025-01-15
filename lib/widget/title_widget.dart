@@ -19,17 +19,14 @@ class TitleWidget extends StatelessWidget {
             style: TextStyle(
               fontSize: 25,
               fontWeight: FontWeight.bold,
+              fontFamily: 'bold',
             ),
           ),
           InkWell(
             onTap: () {},
             child: Text(
               "View all",
-              style: TextStyle(
-                fontSize: 15,
-                fontWeight: FontWeight.w500,
-                color: Colors.blue,
-              ),
+              style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500, color: Colors.blue, fontFamily: 'bold'),
             ),
           ),
         ],
