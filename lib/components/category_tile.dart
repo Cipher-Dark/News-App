@@ -1,22 +1,25 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
+import 'package:news_app/screens/view_all/view_all_list.dart';
 
 class CategoryTile extends StatelessWidget {
-  String title;
-  String imageUrl;
-
-  CategoryTile({
+  const CategoryTile({
     super.key,
     required this.title,
     required this.imageUrl,
   });
+  final String title;
+  final String imageUrl;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        log('Category $title clicked');
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => ViewAllList(
+                      category: title,
+                    )));
       },
       child: Container(
         margin: EdgeInsets.only(right: 10),

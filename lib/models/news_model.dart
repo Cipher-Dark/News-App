@@ -35,7 +35,8 @@ class NewsModel {
   Map<String, dynamic> toJson() => {
         "status": status,
         "totalResults": totalResults,
-        "articles": articles == null ? [] : List<dynamic>.from(articles!.map((x) => x.toJson())),
+        // ignore: unnecessary_null_comparison
+        "articles": articles == null ? [] : List<dynamic>.from(articles.map((x) => x.toJson())),
       };
 }
 

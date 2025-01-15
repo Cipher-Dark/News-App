@@ -1,8 +1,9 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 Widget buildSlideImage(
-  String urlImage,
-  String title,
+  String? urlImage,
+  String? title,
   int index,
   BuildContext context,
 ) {
@@ -12,16 +13,16 @@ Widget buildSlideImage(
       children: [
         ClipRRect(
           borderRadius: BorderRadius.circular(10),
-          child: Image.asset(
+          child: CachedNetworkImage(
+            imageUrl: urlImage ?? "https://fakeimg.pl/350x200/?text=Not%20Available",
             height: 250,
-            urlImage,
             fit: BoxFit.cover,
             width: MediaQuery.of(context).size.width,
           ),
         ),
         Container(
           alignment: Alignment.center,
-          margin: EdgeInsets.only(top: 180),
+          margin: EdgeInsets.only(top: 160),
           height: 250,
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
@@ -31,12 +32,17 @@ Widget buildSlideImage(
             ),
             color: Colors.black45,
           ),
-          child: Text(
-            title,
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 22,
-              fontWeight: FontWeight.w500,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              title ?? "",
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 20,
+                fontWeight: FontWeight.w500,
+              ),
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
             ),
           ),
         )

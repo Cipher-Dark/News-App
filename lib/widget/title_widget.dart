@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:news_app/screens/view_all/view_all_list.dart';
 
 class TitleWidget extends StatelessWidget {
   final String title;
@@ -23,7 +24,9 @@ class TitleWidget extends StatelessWidget {
             ),
           ),
           InkWell(
-            onTap: () {},
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => ViewAllList(category: title)));
+            },
             child: Text(
               "View all",
               style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500, color: Colors.blue, fontFamily: 'bold'),
