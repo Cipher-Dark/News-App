@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:news_app/components/category_tile.dart';
@@ -15,7 +14,6 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
-
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
@@ -35,6 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -57,6 +56,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 horizontal: 10,
               ),
               height: 70,
+              // for the category list (horizontally)
               child: ListView.builder(
                 shrinkWrap: true,
                 itemCount: categories.length,
@@ -69,9 +69,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 },
               ),
             ),
+            // for custom titles(breaking and trending)
             TitleWidget(
               title: "Breaking News",
             ),
+            // for the carousel
             FutureBuilder(
               future: breakingNewsFuture,
               builder: (context, snapshot) {
@@ -98,6 +100,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           );
                         },
+                        // for custom slider image and title
                         child: buildSlideImage(
                           slidersData[index].urlToImage!,
                           slidersData[index].title!,
@@ -115,6 +118,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       autoPlayCurve: Curves.fastOutSlowIn,
                       onPageChanged: (index, reason) {
                         setState(() {
+                          //update the index of the indicaters below this
                           activeIndex = index;
                         });
                       },
@@ -125,6 +129,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 }
               },
             ),
+            // for the indicaters
             Center(
               child: AnimatedSmoothIndicator(
                 activeIndex: activeIndex,
@@ -140,6 +145,7 @@ class _HomeScreenState extends State<HomeScreen> {
             TitleWidget(
               title: "Trending News",
             ),
+            // for the bottom trending only show 6 items
             FutureBuilder<NewsModel>(
               future: trendingFuture,
               builder: (context, snapshot) {
@@ -156,7 +162,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       itemBuilder: (context, index) {
                         var data = snapshot.data;
 
-                        return TrendingTile(data: data?.articles[index]);
+                        return TrendingTile(data: data!.articles[index]);
                       });
                 } else {
                   return Center(child: Text('No data available.'));

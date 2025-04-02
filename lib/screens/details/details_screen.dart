@@ -1,8 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:news_app/models/news_model.dart';
 
 class DetailsScreen extends StatefulWidget {
-  final data;
+  final Article data;
   const DetailsScreen({
     super.key,
     required this.data,
@@ -36,7 +37,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
               spacing: 10,
               children: [
                 Text(
-                  data.title,
+                  data.title ?? "",
                   style: TextStyle(
                     fontSize: 25,
                     fontWeight: FontWeight.bold,
@@ -69,7 +70,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Source : ${data.source.name ?? "Forbs"}",
+                      "Source : ${data.source?.name ?? "Forbs"}",
                     ),
                     Text(
                       "Publish Date: ${data.publishedAt ?? "2022-01-01"}",

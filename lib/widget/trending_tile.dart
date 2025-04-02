@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:news_app/models/news_model.dart';
 import 'package:news_app/screens/details/details_screen.dart';
+import 'package:intl/intl.dart';
 
 class TrendingTile extends StatelessWidget {
   const TrendingTile({
@@ -8,7 +10,7 @@ class TrendingTile extends StatelessWidget {
     required this.data,
   });
 
-  final data;
+  final Article data;
 
   @override
   Widget build(BuildContext context) {
@@ -34,8 +36,8 @@ class TrendingTile extends StatelessWidget {
                 child: Row(
                   spacing: 10,
                   children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(10),
+                    ClipOval(
+                      // borderRadius: BorderRadius.circular(10),
                       child: CachedNetworkImage(
                         imageUrl: data.urlToImage ?? "https://fakeimg.pl/350x200/?text=Not%20Available",
                         fit: BoxFit.fill,
@@ -57,6 +59,12 @@ class TrendingTile extends StatelessWidget {
                             ),
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                        Text(
+                          "${DateFormat.yMMMMd().format(data.publishedAt as DateTime)} ",
+                          style: TextStyle(
+                            fontSize: 15,
                           ),
                         ),
                         SizedBox(
